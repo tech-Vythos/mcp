@@ -1,0 +1,24 @@
+{
+  "name": "vythos",
+  "version": "1.0.0",
+  "settings": [
+    {
+      "name": "Vythos API Key",
+      "description": "Per-tool API key generated in your Vythos workspace settings",
+      "envVar": "VYTHOS_API_KEY",
+      "sensitive": true
+    }
+  ],
+  "mcpServers": {
+    "vythos": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://api.vythos.tech/api/mcp/sse",
+        "--header",
+        "Authorization: Bearer ${VYTHOS_API_KEY}"
+      ]
+    }
+  }
+}
