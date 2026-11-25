@@ -1,0 +1,26 @@
+{
+  "name": "vythos",
+  "displayName": "Vythos",
+  "version": "1.0.0",
+  "description": "Sync client Playbook rules, approved rates, and project memory directly into Cursor.",
+  "author": {
+    "name": "Vythos",
+    "email": "michael@vythos.tech"
+  },
+  "homepage": "https://vythos.tech",
+  "repository": "https://github.com/tech-Vythos/mcp",
+  "license": "MIT",
+  "logo": "assets/vythos-logo.png",
+  "keywords": ["playbook", "client-context", "freelance", "agency", "memory", "rates"],
+  "mcpServers": "./mcp.json",
+  "variables": {
+    "type": "object",
+    "required": ["VYTHOS_API_KEY"],
+    "properties": {
+      "VYTHOS_API_KEY": {
+        "type": "string",
+        "description": "Your per-tool Vythos API key from the AI tools page at https://vythos.tech"
+      }
+    }
+  }
+}
