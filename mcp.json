@@ -1,8 +1,6 @@
 {
-  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
   "mcpServers": {
     "vythos": {
-      "type": "sse",
       "url": "https://api.vythos.tech/api/mcp/sse",
       "headers": {
         "Authorization": "Bearer ${VYTHOS_API_KEY}"

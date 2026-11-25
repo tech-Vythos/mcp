@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "tech.vythos/mcp",
   "title": "Vythos",
-  "description": "Shared client Playbook and context layer syncing client rates, rules, and project memory into Claude, ChatGPT, Cursor, Copilot, and Gemini.",
+  "description": "Shared client Playbook: client rules, rates and past work for Claude, ChatGPT, Cursor and Gemini.",
   "version": "1.0.0",
   "websiteUrl": "https://vythos.tech",
   "repository": {
@@ -11,7 +11,7 @@
   },
   "remotes": [
     {
-      "type": "sse",
+      "type": "streamable-http",
       "url": "https://api.vythos.tech/api/mcp/sse"
     }
   ]

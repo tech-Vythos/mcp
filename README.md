@@ -8,45 +8,85 @@ Official MCP (Model Context Protocol) documentation and client configuration for
 ---
 
 ## Why Vythos MCP?
-* **Task-Specific Context (`get_context`):** Sends only the client rules, day rates, payment terms, and past work each task needs—cutting AI token costs and rework.
+
+* **Task-Specific Context (`get_context`):** Sends only the client rules, day rates, payment terms, and past work each task needs — cutting AI token costs and rework.
 * **Pre-Delivery Verification (`check_draft`):** Audits quotes, proposals, and client copy against your Playbook rules before you send them.
 * **One Playbook Across Every Tool:** Connect Google Drive, Notion, Gmail, Slack, Harvest, and Fireflies once; use the same live context across Claude, ChatGPT, Cursor, Copilot, and Gemini.
-* **Hosted & Zero-Setup:** Connects directly via Vythos's remote MCP endpoint with per-tool API keys.
+* **Hosted & Zero-Setup:** Connects directly via Vythos's remote MCP endpoint — Streamable HTTP transport.
 
 ---
 
 ## Quick Setup
 
-### One-Line CLI Install
-```bash
-npx add-mcp 'https://api.vythos.tech/api/mcp/sse'
-```
+Everything you need is on the **AI tools** page in your Vythos workspace: the
+server address, a key, and a ready-made snippet per tool. Full guide:
+[doc.vythos.tech/ai-tools/connect](https://doc.vythos.tech/ai-tools/connect).
 
-*(Or point coding agents like Claude Code directly to https://vythos.tech/skill.md for guided setup.)*
+### Claude Desktop / ChatGPT / Gemini (OAuth — no key needed)
 
-### Manual Client Configuration (Claude Desktop / Cursor / Windsurf)
+1. In Vythos, open **AI tools** and copy the server address.
+2. In your tool, add a custom connector / MCP server and paste the address.
+3. Sign in to Vythos in the browser and approve.
 
-Generate an API key in your Vythos workspace and add the following to your MCP config file (see [doc.vythos.tech](https://doc.vythos.tech) for client-specific guides):
+No API key required — these tools sign in with your Vythos account via OAuth.
+
+### Cursor / Windsurf
+
+Create or edit `.cursor/mcp.json` (or `~/.codeium/windsurf/mcp_config.json`):
 
 ```json
 {
   "mcpServers": {
     "vythos": {
       "url": "https://api.vythos.tech/api/mcp/sse",
-      "headers": {
-        "Authorization": "Bearer YOUR_VYTHOS_API_KEY"
-      }
+      "headers": { "Authorization": "Bearer <your-key>" }
     }
   }
 }
 ```
+
+### GitHub Copilot (VS Code)
+
+Create or edit `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "vythos": {
+      "type": "http",
+      "url": "https://api.vythos.tech/api/mcp/sse",
+      "headers": { "Authorization": "Bearer <your-key>" }
+    }
+  }
+}
+```
+
+### Claude Code
+
+```bash
+claude mcp add --transport http vythos https://api.vythos.tech/api/mcp/sse \
+  --header "Authorization: Bearer <your-key>"
+```
+
+Use `--transport http`. The address ends in `/sse` for historical reasons, but
+the server speaks Streamable HTTP — `--transport sse` fails to connect.
+
+### Any other MCP client
+
+| | |
+|---|---|
+| **Server URL** | From the AI tools page in Vythos |
+| **Transport** | Streamable HTTP (POST) |
+| **Auth** | OAuth (Claude, ChatGPT, Gemini) or `Authorization: Bearer <key>` (everything else) |
+
+Generate and revoke per-tool API keys on the **AI tools** page in Vythos.
 
 ---
 
 ## Core MCP Tools
 
 | Tool | Purpose | When to Call |
-|------|---------|--------------|
+|------|---------|--------------| 
 | `get_context` | Retrieve Playbook rules + personal memory | BEFORE any governed task |
 | `search_memory` | Search for specific evidence/history; `exact=true` for exact words | For discovery/fact-finding |
 | `read_source` | The whole of a source search found | Before quoting, or to read the rest of a thread |
@@ -61,10 +101,10 @@ Generate an API key in your Vythos workspace and add the following to your MCP c
 
 * **Docs & Setup Guides:** [https://doc.vythos.tech](https://doc.vythos.tech)
 * **Website & Dashboard:** [https://vythos.tech](https://vythos.tech)
-* **Security & Key Management:** Generate and revoke per-tool API keys anytime in Settings (see [doc.vythos.tech](https://doc.vythos.tech)).
 
 ---
 
 ## License
 
-[MIT](./LICENSE)
+[MIT](./LICENSE) — covers the configuration files in this repository only, not
+the Vythos name, logo, or service.
