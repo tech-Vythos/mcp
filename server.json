@@ -3,8 +3,15 @@
   "name": "tech.vythos/mcp",
   "title": "Vythos",
   "description": "Shared client Playbook: client rules, rates and past work for Claude, ChatGPT, Cursor and Gemini.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "websiteUrl": "https://vythos.tech",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/tech-Vythos/mcp/main/assets/vythos-logo-512.png",
+      "sizes": ["512x512"],
+      "mimeType": "image/png"
+    }
+  ],
   "repository": {
     "url": "https://github.com/tech-Vythos/mcp",
     "source": "github"
