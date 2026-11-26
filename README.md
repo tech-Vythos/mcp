@@ -1,5 +1,7 @@
 # Vythos MCP Server
 
+[![mcptry](https://mcptry.com/badge/tech.vythos/mcp)](https://mcptry.com/servers/tech.vythos/mcp)
+
 Official MCP (Model Context Protocol) documentation and client configuration for **[Vythos](https://vythos.tech)** — the shared client Playbook and context layer for freelancers, consultants, and small agencies that syncs client rates, rules, and past work directly into Claude, ChatGPT, Copilot, Gemini, and Cursor.
 
 * **Full Documentation & Setup Guides:** [https://doc.vythos.tech](https://doc.vythos.tech)
